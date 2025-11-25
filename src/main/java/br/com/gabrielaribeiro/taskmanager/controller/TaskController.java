@@ -1,7 +1,7 @@
 package br.com.gabrielaribeiro.taskmanager.controller;
 
 import br.com.gabrielaribeiro.taskmanager.model.Task;
-import br.com.gabrielaribeiro.taskmanager.repository.TaskRepository;
+import br.com.gabrielaribeiro.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,43 +11,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api/v1/tasks")
 public class TaskController {
 
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskService taskService;
 
     @GetMapping
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return taskService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        return taskService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Task> createTask(@Valid @RequestBody Task task) {
-        Task newTask = taskRepository.save(task);
+        Task newTask = taskService.save(task);
         return new ResponseEntity<>(newTask, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @Valid @RequestBody Task taskDetails) {
-        return taskRepository.findById(id)
-                .map(task -> {
-                    task.setTitle(taskDetails.getTitle());
-                    task.setDescription(taskDetails.getDescription());
-                    task.setCompleted(taskDetails.isCompleted());
-                    Task update = taskRepository.save(task);
-                    return ResponseEntity.ok(update);
-                })
-                .orElse(ResponseEntity.notFound().build());
+        Task updatedTask = taskService.update(id, taskDetails);
+        return ResponseEntity.ok(updatedTask);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        if (taskRepository.existsById(id)) {
-            taskRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        taskService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

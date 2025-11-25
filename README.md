@@ -60,33 +60,31 @@ Fiz um novo GET para provar que o ID 3 tinha sumido da lista.
 Depois de apagar/corrigir todos os erros, este é o print final da lista, mostrando apenas os dados corretos.
 ![Teste Final](evidencias/Teste%20Final%20-%20Sucesso.png)
 
-## Etapa II: Evolução e Aprofundamento (Atividade Processual III)
-Nesta etapa implementei as melhorias de **Boas Práticas**, **Validação de Dados** e **Documentação**.
+### Etapa II: Evolução e Aprofundamento (Atividade Processual III e IV)
+Nesta etapa, fiz a **Organização do Código** e adicionei **Segurança e Tratamento de Erros Avançado**.
 
-### Endpoints Atualizados e Boas Práticas (RESTful)
-Fiz a atualização do endereço base para **`/api/tasks`** e o código de status do POST foi corrigido para **`201 Created`** (conforme as boas práticas REST).
-| Método | Endpoint | Descrição | Status Sucesso (Correto) |
-| :--- | :--- | :--- | :--- |
-| **POST** | **`/api/tasks`** | Cria uma nova tarefa. | **`201 Created`** |
-| **GET** | **`/api/tasks`** | Lista todas as tarefas salvas. | `200 OK` |
-| **PUT** | **`/api/tasks/{id}`** | Atualiza uma tarefa existente. | `200 OK` |
-| **DELETE** | **`/api/tasks/{id}`** | Exclui uma tarefa pelo ID. | `204 No Content` |
+### 1. Endpoints Finais e Versionamento
+Eu atualizei o endereço para incluir o **Versionamento `/v1`** e corrigi o status de criação (POST) para ser `201 Created` (o padrão correto).
 
-### Validação e Tratamento de Erros
-Para garantir a integridade dos dados da aplicação, implementei duas etapas importantes:
-* **Validação:** Adicionei a anotação **`@NotBlank`** no Model (`Task.java`) para evitar que campos obrigatórios sejam enviados vazios.
-* **Tratamento de Falha:** Criei o arquivo **`GlobalExceptionHandler.java`** utilizando (`@ControllerAdvice`) que intercepta automaticamente erros de validação e retorna uma resposta JSON mais clara e amigável para o usuário, sempre que ocorrer um (`400 Bad Request`).
+| Método | Endpoint | Status Sucesso |
+| :--- | :--- | :--- |
+| **POST** | **`/api/v1/tasks`** | **201 Created** |
+| **GET** | **`/api/v1/tasks`** | 200 OK |
+| **PUT** | **`/api/v1/tasks/{id}`** | 200 OK |
+| **DELETE** | **`/api/v1/tasks/{id}`** | 204 No Content |
 
-![Validação de Dados](evidencias/Validação%20de%20Dados.png)
+### 2. Validação e Tratamento de Erros (O Ponto Forte)
 
-### Documentação Interativa com Swagger (Diferencial)
-Como diferencial, o projeto inclui o **Swagger UI**, permitindo que qualquer pessoa teste os endpoints pelo navegador: `http://localhost:8080/swagger-ui.html`
+**Regras Obrigatórias:** Usei o `@NotBlank` para garantir que ninguém consiga enviar uma tarefa sem título.
+![Validação de Dados](evidencias/Valida%C3%A7%C3%A3o%20de%20Dados.png)
+**Sistema de Mensagens Limpas:** Criei o **`GlobalExceptionHandler.java`** (um sistema que pega o erro antes de ele quebrar o projeto) para que a API devolva uma resposta JSON clara e amigável em caso de falha.
+**404 Customizado:** Se eu tentar deletar algo que não existe, o sistema retorna um `404 Not Found` com a minha mensagem personalizada (implementado no Service Layer).
+![404 NOT FOUND](evidencias/Delete%20-%20404%20NOT%20FOUND.png)
+
+### 3. Documentação Interativa com Swagger (Diferencial)
+Como diferencial, eu usei o **Swagger UI** para que qualquer pessoa possa ver e testar os endpoints: `http://localhost:8080/swagger-ui.html`
 ![Swagger Interativo](evidencias/Swagger%20Interativo.png)
 
-### Prova Final de Estabilidade
-A parte final, com todos os ajustes e validações funcionando, limpa e correta.
-![Teste Final](evidencias/Teste%20Final%20-%20Limpo.png)
-
-### Autor(a)
+### Autora
 
 Desenvolvido por **Gabriela Ribeiro Almeida**
