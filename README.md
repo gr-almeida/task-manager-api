@@ -98,7 +98,7 @@ http://localhost:8080/swagger-ui.html
 
 ### 4. Prova Final de Estabilidade
 A parte final, com todos os ajustes e validações funcionando, limpa e correta.
-![Teste Final Limpo](imagens_testes/final_limpo.png)
+![Teste Final Limpo](imagens_testes/teste_final.png)
 
 ---
 
