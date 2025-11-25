@@ -69,7 +69,7 @@ Depois de apagar/corrigir todos os erros, este é o print final da lista, mostra
 Nesta etapa, implementei as melhorias de Boas Práticas, Validação de Dados e Documentação.
 
 ### 1. Endpoints Atualizados e Boas Práticas (RESTful)
-Fiz a atualização do endereço base para **/api/tasks** e o código de status do POST foi corrigido para **201 Created** (conforme as boas práticas REST).
+Fiz a atualização do endereço base para **/api/tasks** e o código de status do POST foi corrigido para **201 Created** (conforme as boas práticas REST), na ultima etapa da atividade fiz a alteração novamente do endereço para **/api/v1/tasks**.
 
 | Método | Endpoint | Descrição | Status Sucesso (Correto) |
 | :--- | :--- | :--- | :--- |
@@ -81,10 +81,12 @@ Fiz a atualização do endereço base para **/api/tasks** e o código de status 
 ### 2. Validação e Tratamento de Erros
 Para garantir a integridade dos dados da aplicação, implementei duas etapas importantes:
 
-* **Validação:** Adicionei a anotação **@NotBlank** no Model (Task.java) para evitar que campos obrigatórios sejam enviados vazios.
-* **Tratamento de Falha:** Criei o arquivo **GlobalExceptionHandler.java** utilizando (@ControllerAdvice) que intercepta automaticamente erros de validação e retorna uma resposta JSON mais clara e amigável para o usuário, sempre que ocorrer um (400 Bad Request).
-
+**Validação:** Adicionei a anotação **@NotBlank** no Model (Task.java) para evitar que campos obrigatórios sejam enviados vazios.
 ![Validação de Dados](imagens_testes/validacao_dados.png)
+
+**Tratamento de Falha:** Criei o arquivo **GlobalExceptionHandler.java** utilizando (@ControllerAdvice) que intercepta automaticamente erros de validação e retorna uma resposta JSON mais clara e amigável para o usuário, sempre que ocorrer um (400 Bad Request).
+
+
 
 **Tratamento de 404 Customizado:**
 Se eu tentar deletar algo que não existe, o sistema retorna um 404 Not Found com a minha mensagem personalizada.
@@ -97,7 +99,7 @@ http://localhost:8080/swagger-ui.html
 ![Swagger Interativo](imagens_testes/swagger_interativo.png)
 
 ### 4. Prova Final de Estabilidade
-A parte final, com todos os ajustes e validações funcionando, limpa e correta.
+A parte final, com todos os ajustes e validações funcionando, url atualizada e teste no Postman com as provas. 
 ![Teste Final Limpo](imagens_testes/teste_final.png)
 
 ---
