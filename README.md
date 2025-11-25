@@ -46,7 +46,7 @@ Continuei testando e criando novas tarefas, mas notei que algumas estavam com o 
 
 ### 4. Corrigindo o Erro (PUT)
 Usei o PUT para consertar o registro de ID 2, que estava com o título nulo.
-![PUT Atualizar](evidencias/03%20PUT%20-%20Sucesso%20Atualiza%C3%A7%C3%A3o.png)
+![PUT Atualizar](evidencias/03%20PUT%20-%20Sucesso%20Atualização.png)
 
 ### 5. Exclusão da Tarefa (DELETE)
 Teste de exclusão da tarefa ID 3. A API retornou o status **204 No Content**, confirmando a remoção.
@@ -54,7 +54,7 @@ Teste de exclusão da tarefa ID 3. A API retornou o status **204 No Content**, c
 
 ### 6. Verificando a Lista depois do Delete (GET)
 Fiz um novo GET para provar que o ID 3 tinha sumido da lista.
-![GET Pós-Delete](evidencias/05%20GET%20atualizada.png)
+![GET Pós-Delete](evidencias/Teste%20Final%20-%20Limpo.png)
 
 ### 7. Prova Final
 Depois de apagar/corrigir todos os erros, este é o print final da lista, mostrando apenas os dados corretos.
@@ -76,7 +76,7 @@ Eu atualizei o endereço para incluir o **Versionamento `/v1`** e corrigi o stat
 ### 2. Validação e Tratamento de Erros (O Ponto Forte)
 
 **Regras Obrigatórias:** Usei o `@NotBlank` para garantir que ninguém consiga enviar uma tarefa sem título.
-![Validação de Dados](evidencias/Valida%C3%A7%C3%A3o%20de%20Dados.png)
+![Validação de Dados](evidencias/Validação%20de%20Dados.png)
 **Sistema de Mensagens Limpas:** Criei o **`GlobalExceptionHandler.java`** (um sistema que pega o erro antes de ele quebrar o projeto) para que a API devolva uma resposta JSON clara e amigável em caso de falha.
 **404 Customizado:** Se eu tentar deletar algo que não existe, o sistema retorna um `404 Not Found` com a minha mensagem personalizada (implementado no Service Layer).
 ![404 NOT FOUND](evidencias/Delete%20-%20404%20NOT%20FOUND.png)
