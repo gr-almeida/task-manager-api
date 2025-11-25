@@ -28,7 +28,6 @@ A API responde nos seguintes endereços (Base: /tasks):
 | **GET** | /tasks | Lista todas as tarefas salvas. | 200 OK |
 | **PUT** | /tasks/{id} | Atualiza uma tarefa existente. | 200 OK |
 | **DELETE** | /tasks/{id} | Exclui uma tarefa pelo ID. | 204 No Content |
-
 ### Provas de Teste (Minha Jornada no Postman)
 
 Aqui estão os prints que tirei para provar que os métodos estão funcionando, incluindo a descoberta e correção de erros.
