@@ -66,10 +66,15 @@ Depois de apagar/corrigir todos os erros, este é o print final da lista, mostra
 ---
 
 ## Etapa II: Evolução e Aprofundamento (Atividade Processual III e IV)
-Nesta etapa, implementei as melhorias de Boas Práticas, Validação de Dados e Documentação.
 
-### 1. Endpoints Atualizados e Boas Práticas (RESTful)
-Fiz a atualização do endereço base para **/api/tasks** e o código de status do POST foi corrigido para **201 Created** (conforme as boas práticas REST), na ultima etapa da atividade fiz a alteração novamente do endereço para **/api/v1/tasks**.
+Nesta etapa, implementei as melhorias de arquitetura e boas práticas exigidas, focando em **Estruturação (Service Layer)**, **Versionamento**, **Validação** e **Documentação**.
+
+### 1. Reestruturação e Versionamento (Arquitetura)
+Para atender aos requisitos de escalabilidade:
+
+* **Estruturação de Projeto:** Separei as responsabilidades criando a camada **Service**. Agora, o `TaskController` repassa as regras de negócio para o `TaskService` e `TaskServiceImpl`, deixando o código mais organizado.
+
+* **Versionamento:** A URL da API foi atualizada para **/api/v1/tasks**, garantindo compatibilidade para evoluções futuras.
 
 | Método | Endpoint | Descrição | Status Sucesso (Correto) |
 | :--- | :--- | :--- | :--- |
